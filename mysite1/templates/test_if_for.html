@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>if</h1>
+{% if x > 10 %}
+<h2>今天天气很好</h2>
+{% else %}
+<h2>今天天气非常好</h2>
+{% endif %}
+
+<h1>for</h1>
+{% for item in lst %}
+    {% if forloop.first %} &&& {% endif %}
+    <h3>{{ forloop.counter }}{{ item }}</h3>
+    {% if forloop.last %} === {% endif %}
+{% empty %}
+    当前没有数据
+{% endfor %}
+</body>
+</html>
