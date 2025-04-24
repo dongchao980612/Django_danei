@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        /* 登录表单整体样式 */
+form {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 表单标题样式 */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 输入框样式 */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 记住用户名样式 */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* 提交按钮样式 */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 按钮悬停效果 */
+input[type="submit"]:hover {
+    opacity: 0.8;
+}
+    </style>
+</head>
+<body>
+<form action="/user/login/" method="post" onsubmit="return validateForm()">
+    <p>用户名<input type="text" name="username"></p>
+    <p>密码<input type="text" name="password"></p>
+    <p><input type="checkbox" name="remember_username">记住用户名</p>
+    <P><input type="submit" value="登录"></P>
+</form>
+</body>
+</html>

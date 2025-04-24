@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+<form action="/note/add_note/" method="post" onsubmit="return validateForm()">
+    <p>
+        标题<input type="text" name="title" id="title"> <input type="submit" value="添加笔记">
+    </p>
+    <p>
+        <textarea clos = "30" rows="10" name="content" id="content"></textarea>
+    </p>
+
+</form>
+
+<script>
+    function validateForm() {
+        // 获取表单输入值
+        var title = document.getElementById("title").value.trim();
+        var content = document.getElementById("content").value.trim();
+
+        // 检查是否为空
+        if (title === "") {
+            alert("Input title, please!");
+            return false; // 阻止表单提交
+        }
+        if (content === "") {
+            alert("Input content, please!");
+            return false; // 阻止表单提交
+        }
+
+        // 如果所有字段都填写了，允许提交表单
+        return true;
+    }
+</script>
+</body>
+
+</html>

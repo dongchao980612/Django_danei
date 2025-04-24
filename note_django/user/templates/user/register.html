@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        /* 注册表单整体样式 */
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 表单标题样式 */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 输入框样式 */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 提示信息样式 */
+span {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+/* 提交按钮样式 */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 登录按钮样式 */
+input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 按钮悬停效果 */
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    opacity: 0.8;
+}
+    </style>
+</head>
+<body>
+<form action="/user/reg/" method="post" onsubmit="return validateForm()">
+    <p>用户名：<input type="text" name="username"><span style="color: red">{% if username_msg %} {{ username_msg }}{% endif %}</span></p>
+    <p>密码：<input type="password" name="password_1"></p>
+    <p>再次输入密码：<input type="password" name="password_2"> <span style="color: red">{% if password_msg %} {{ password_msg }}{% endif %}</span></p>
+    <P><input type="submit" value="注册"><a href="/user/login"><input type="button" value="登录"></a> </P>
+</form>
+
+<script>
+    function validateForm() {
+        // 获取表单输入值
+        var username = document.getElementById("username").value.trim();
+        var password_1 = document.getElementById("password_1").value.trim();
+        var password_2 = document.getElementById("password_2").value.trim();
+
+        // 检查是否为空
+        if (username === "") {
+            alert("请输入用户名！");
+            return false; // 阻止表单提交
+        }
+        if (password_1 === "") {
+            alert("请输入密码！");
+            return false; // 阻止表单提交
+        }
+        if (password_2 === "") {
+            alert("请再次输入密码！");
+            return false; // 阻止表单提交
+        }
+
+        // 如果所有字段都填写了，允许提交表单
+        return true;
+    }
+</script>
+</body>
+</html>

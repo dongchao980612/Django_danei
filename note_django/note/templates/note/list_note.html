@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>笔记 主页</title>
+    <style>
+        /* 整体页面样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 笔记列表容器样式 */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+/* 标题样式 */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 按钮样式 */
+a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* 操作按钮样式 */
+td a {
+    background-color: #2196F3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+td a:hover {
+    background-color: #1976D2;
+}
+
+/* 退出登录按钮样式 */
+.logout-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+    </style>
+</head>
+<body>
+{% if request.session.username %}
+    <p>{{ request.session.username }} 的笔记 <a href="/note/add_note">添加笔记</a> <a href="/user/login_out">退出登录</a></p>
+    {% if all_notes %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>内容</th>
+                <th>创建时间</th>
+                <th>修改时间</th>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+            {% for note in all_notes %}
+                <tr>
+                    <td>{{ note.id }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.content }}</td>
+                    <td>{{ note.created_time }}</td>
+                    <td>{{ note.updated_time }}</td>
+                    <td><a href="/note/update_note/{{ note.id }}">更新</a></td>
+                    <td><a href="/note/delete_note/{{ note.id }}">删除</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% else %}
+    {% if request.COOKIES.username %}
+        p>{{ request.session.username }}的笔记<a href="/note/add_note">添加笔记</a><a href="/user/login_out">退出登录</a></p>
+        {% if all_notes %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>内容</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>修改</th>
+                    <th>删除</th>
+                </tr>
+                {% for note in all_notes %}
+                    <tr>
+                        <td>{{ note.id }}</td>
+                        <td>{{ note.title }}</td>
+                        <td>{{ note.content }}</td>
+                        <td>{{ note.created_time }}</td>
+                        <td>{{ note.updated_time }}</td>
+                        <td><a href="/note/update_note/{{ book.id }}">更新</a></td>
+                        <td><a href="/note/delete_note/{{ book.id }}">删除</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% else %}
+        <p><a href="/user/login">登录</a> <a href="/user/reg">注册</a></p>
+    {% endif %}
+{% endif %}
+</body>
+</html>

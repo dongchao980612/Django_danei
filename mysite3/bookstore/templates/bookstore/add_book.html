@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+<form action="/bookstore/add_book/" method="post" onsubmit="return validateForm()">
+    <p>
+        title<input type="text" name="title" id="title">
+    </p>
+    <p>
+        pub<input type="text" name="pub" id="pub">
+    </p>
+    <p>
+        price<input type="text" name="price" id="price">
+    </p>
+    <p>
+        market price<input type="text" name="market_price" id="market_price">
+    </p>
+    <p>
+        <input type="submit" value="添加">
+    </p>
+</form>
+
+<script>
+    function validateForm() {
+        // 获取表单输入值
+        var title = document.getElementById("title").value.trim();
+        var pub = document.getElementById("pub").value.trim();
+        var price = document.getElementById("price").value.trim();
+        var marketPrice = document.getElementById("market_price").value.trim();
+
+        // 检查是否为空
+        if (title === "") {
+            alert("Input title, please!");
+            return false; // 阻止表单提交
+        }
+        if (pub === "") {
+            alert("Input pub, please!");
+            return false; // 阻止表单提交
+        }
+        if (price === "") {
+            alert("Input price, please!");
+            return false; // 阻止表单提交
+        }
+        if (marketPrice === "") {
+            alert("Input market price, please!");
+            return false; // 阻止表单提交
+        }
+
+        // 检查价格是否为数字且大于等于0
+            price = parseFloat(price);
+            marketPrice = parseFloat(marketPrice);
+
+            if (isNaN(price) || price < 0) {
+                alert("请输入有效的价格，价格不能低于0！");
+                return false;
+            }
+            if (isNaN(marketPrice) || marketPrice < 0) {
+                alert("请输入有效的零售价，零售价不能低于0！");
+                return false;
+            }
+
+        // 如果所有字段都填写了，允许提交表单
+        return true;
+    }
+</script>
+</body>
+
+</html>

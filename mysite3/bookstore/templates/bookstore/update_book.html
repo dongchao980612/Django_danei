@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理系统 - 更新图书</title>
+</head>
+<body>
+    <form action="/bookstore/update_book/{{ book.id }}/" method="post" onsubmit="return validateForm()">
+        <p>
+            title<input type="text" value="{{ book.title }}" disabled="disabled">
+        </p>
+        <p>
+            pub<input type="text" value="{{ book.pub }}" disabled="disabled">
+        </p>
+        <p>
+            price<input type="text" value="{{ book.price }}" name="price" id="price">
+        </p>
+        <p>
+            market price<input type="text" value="{{ book.market_price }}" name="market_price" id="market_price">
+        </p>
+        <p>
+            <input type="submit" value="更新">
+        </p>
+    </form>
+
+    <script>
+        function validateForm() {
+            // 获取表单输入值
+            var price = document.getElementById("price").value.trim();
+            var marketPrice = document.getElementById("market_price").value.trim();
+
+            // 检查价格是否为空
+            if (price === "") {
+                alert("请输入价格！");
+                return false;
+            }
+
+            // 检查零售价是否为空
+            if (marketPrice === "") {
+                alert("请输入零售价！");
+                return false;
+            }
+
+            // 检查价格是否为数字且大于0
+            price = parseFloat(price);
+            if (isNaN(price) || price <= 0) {
+                alert("价格必须大于0！");
+                return false;
+            }
+
+            // 检查零售价是否为数字且大于0
+            marketPrice = parseFloat(marketPrice);
+            if (isNaN(marketPrice) || marketPrice <= 0) {
+                alert("零售价必须大于0！");
+                return false;
+            }
+
+            // 如果所有验证通过，允许提交表单
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/note/update_note/{{ note.id }}/" method="post" onsubmit="return validateForm()">
+        <p>
+            标题<input type="text" value="{{ note.title }}" name="title">
+        </p>
+        <p>
+            <textarea clos = "30" rows="10"  name="content" id="content">{{ note.content }}</textarea>
+        </p>
+
+        <p>
+            <input type="submit" value="更新">
+        </p>
+    </form>
+
+    <script>
+        function validateForm() {
+            // 获取表单输入值
+            var title = document.getElementById("title").value.trim();
+            var content = document.getElementById("content").value.trim();
+
+            // 检查价格是否为空
+            if (title === "") {
+                alert("请输入标题！");
+                return false;
+            }
+
+            // 检查零售价是否为空
+            if (content === "") {
+                alert("请输入内容！");
+                return false;
+            }
+
+            // 如果所有验证通过，允许提交表单
+            return true;
+        }
+    </script>
+</body>
+</html>
